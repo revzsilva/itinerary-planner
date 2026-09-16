@@ -1,0 +1,620 @@
+/* ==========================================================================
+   LAVINIA EXPLORER - HIGH-CONTRAST DAYLIGHT STYLESHEET (style.css)
+   --------------------------------------------------------------------------
+   Non-Functional Requirements Addressed:
+   1. Outdoor Daylight Readability: High contrast ratios (WCAG AAA 7:1+ target),
+      crisp 2px structural borders, deep slate/black typography (#0F172A) on
+      pure white (#FFFFFF) and high-luminance alabaster (#F8FAFC) surfaces.
+   2. Responsive Viewport Support: 320px (small mobile) to 1920px (full HD).
+   3. Print Optimization: Dedicated @media print rules for clean PDF/paper
+      itinerary export without map/navbar clutter.
+   ========================================================================== */
+
+:root {
+  /* High-Contrast Daylight Palette */
+  --hc-bg-page: #F1F5F9;
+  --hc-bg-surface: #FFFFFF;
+  --hc-bg-subtle: #E2E8F0;
+  --hc-text-primary: #090D16;
+  --hc-text-secondary: #1E293B;
+  --hc-border-strong: #0F172A;
+  --hc-border-subtle: #64748B;
+
+  /* High-Visibility Action Colors */
+  --hc-primary: #0047B3;        /* Deep Cobalt Blue (high contrast with white) */
+  --hc-primary-hover: #003380;
+  --hc-accent: #FFBA08;         /* Sunburst Amber (black text on top) */
+  --hc-accent-hover: #EAA500;
+  --hc-success: #0D6832;        /* Deep Forest Green */
+  --hc-danger: #B91C1C;         /* Deep Crimson */
+
+  /* Category Badge Colors (All WCAG AA/AAA compliant with white text) */
+  --cat-nature: #0D6832;        /* Forest Green */
+  --cat-heritage: #853A00;      /* Deep Terracotta / Bronze */
+  --cat-religious: #5B21B6;     /* Royal Violet */
+  --cat-leisure: #035388;       /* Ocean Blue */
+  --cat-conservation: #0F5156;  /* Deep Teal */
+  --cat-hub: #B91C1C;           /* Hub Marker Red */
+}
+
+/* --------------------------------------------------------------------------
+   Base Typography & Layout
+   -------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--hc-bg-page);
+  color: var(--hc-text-primary);
+  line-height: 1.55;
+  min-width: 320px;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6, .brand-title, .fw-extrabold {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  color: var(--hc-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.hc-muted {
+  color: var(--hc-text-secondary) !important;
+  font-weight: 500;
+}
+
+.text-primary-hc {
+  color: var(--hc-primary) !important;
+}
+
+/* Strong focus states for outdoor visibility & keyboard accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--hc-accent) !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--hc-border-strong) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Navbar & Header
+   -------------------------------------------------------------------------- */
+.hc-navbar {
+  background-color: var(--hc-bg-surface);
+  border-bottom: 3px solid var(--hc-border-strong);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  box-shadow: 0 4px 0 rgba(15, 23, 42, 0.08);
+}
+
+.brand-badge {
+  width: 44px;
+  height: 44px;
+  background-color: var(--hc-primary);
+  color: #FFFFFF;
+  border: 2px solid var(--hc-border-strong);
+  border-radius: 10px;
+  font-size: 1.35rem;
+}
+
+.brand-title {
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+
+.brand-subtitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--hc-text-secondary);
+}
+
+.hc-navbar .nav-link {
+  color: var(--hc-text-primary);
+  font-weight: 700;
+  padding: 0.5rem 0.85rem !important;
+  border-radius: 8px;
+  border: 2px solid transparent;
+}
+
+.hc-navbar .nav-link:hover,
+.hc-navbar .nav-link.active {
+  background-color: var(--hc-bg-subtle);
+  border-color: var(--hc-border-strong);
+}
+
+.hc-toggler {
+  border: 2px solid var(--hc-border-strong) !important;
+  padding: 0.4rem 0.6rem;
+}
+
+/* --------------------------------------------------------------------------
+   Hero Section
+   -------------------------------------------------------------------------- */
+.hc-hero {
+  background-color: var(--hc-bg-surface);
+  border-bottom: 2px solid var(--hc-border-strong) !important;
+}
+
+.hc-pill-banner {
+  background-color: var(--hc-text-primary);
+  color: #FFFFFF;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+}
+
+.hc-lead-text {
+  color: var(--hc-text-secondary);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.hc-stat-card {
+  background-color: #FFFBEB;
+  border: 2px solid var(--hc-border-strong);
+  box-shadow: 4px 4px 0 var(--hc-border-strong);
+}
+
+/* --------------------------------------------------------------------------
+   Buttons & Inputs (High-Contrast Tactile Design)
+   -------------------------------------------------------------------------- */
+.btn-hc-primary {
+  background-color: var(--hc-primary);
+  color: #FFFFFF;
+  font-weight: 700;
+  border: 2px solid var(--hc-border-strong);
+  box-shadow: 2px 2px 0 var(--hc-border-strong);
+  transition: transform 0.1s ease, background-color 0.15s ease;
+}
+
+.btn-hc-primary:hover,
+.btn-hc-primary:active {
+  background-color: var(--hc-primary-hover);
+  color: #FFFFFF;
+  border-color: var(--hc-border-strong);
+}
+
+.btn-hc-accent {
+  background-color: var(--hc-accent);
+  color: var(--hc-text-primary);
+  font-weight: 800;
+  border: 2px solid var(--hc-border-strong);
+  box-shadow: 2px 2px 0 var(--hc-border-strong);
+}
+
+.btn-hc-accent:hover,
+.btn-hc-accent:active {
+  background-color: var(--hc-accent-hover);
+  color: var(--hc-text-primary);
+  border-color: var(--hc-border-strong);
+}
+
+.btn-hc-success {
+  background-color: var(--hc-success);
+  color: #FFFFFF;
+  font-weight: 700;
+  border: 2px solid var(--hc-border-strong);
+}
+
+.btn-hc-success:hover {
+  background-color: #094D24;
+  color: #FFFFFF;
+}
+
+.btn-hc-outline {
+  background-color: var(--hc-bg-surface);
+  color: var(--hc-text-primary);
+  font-weight: 700;
+  border: 2px solid var(--hc-border-strong);
+}
+
+.btn-hc-outline:hover {
+  background-color: var(--hc-bg-subtle);
+  color: var(--hc-text-primary);
+  border-color: var(--hc-border-strong);
+}
+
+.btn-hc-secondary {
+  background-color: var(--hc-bg-subtle);
+  color: var(--hc-text-primary);
+  font-weight: 700;
+  border: 2px solid var(--hc-border-strong);
+  width: 100px;
+  height: 42px;
+}
+
+.btn-hc-secondary:hover {
+  background-color: #CBD5E1;
+  color: var(--hc-text-primary);
+}
+
+.btn-hc-danger {
+  background-color: var(--hc-danger);
+  color: #FFFFFF;
+  font-weight: 700;
+  border: 2px solid var(--hc-border-strong);
+}
+
+.btn-hc-danger:hover {
+  background-color: #991B1B;
+  color: #FFFFFF;
+}
+
+.hc-input {
+  border: 2px solid var(--hc-border-strong) !important;
+  color: var(--hc-text-primary) !important;
+  background-color: var(--hc-bg-surface) !important;
+  font-weight: 600;
+}
+
+.hc-input::placeholder {
+  color: #475569;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   Filter Panel, Category Pills & Time-of-Day Buttons
+   -------------------------------------------------------------------------- */
+.hc-filter-panel {
+  background-color: var(--hc-bg-surface);
+  border: 2px solid var(--hc-border-strong);
+  box-shadow: 4px 4px 0 rgba(15, 23, 42, 0.12);
+}
+
+.hc-divider {
+  border-top: 2px solid var(--hc-border-subtle);
+  opacity: 0.4;
+}
+
+/* Time-of-Day Radio Button Group */
+.btn-hc-filter {
+  background-color: var(--hc-bg-surface);
+  color: var(--hc-text-primary);
+  border: 2px solid var(--hc-border-strong);
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 0.45rem 0.5rem;
+}
+
+.btn-check:checked + .btn-hc-filter,
+.btn-hc-filter:hover {
+  background-color: var(--hc-text-primary);
+  color: #FFFFFF;
+  border-color: var(--hc-border-strong);
+}
+
+/* Category Pills */
+.hc-category-pill {
+  background-color: var(--hc-bg-surface);
+  color: var(--hc-text-primary);
+  border: 2px solid var(--hc-border-strong);
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.45rem 1rem;
+  transition: all 0.15s ease;
+}
+
+.hc-category-pill:hover {
+  background-color: var(--hc-bg-subtle);
+}
+
+.hc-category-pill.active {
+  background-color: var(--hc-primary);
+  color: #FFFFFF;
+  border-color: var(--hc-border-strong);
+  box-shadow: 2px 2px 0 var(--hc-border-strong);
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Map Container & Custom Markers
+   -------------------------------------------------------------------------- */
+.hc-card {
+  background-color: var(--hc-bg-surface);
+  border: 2px solid var(--hc-border-strong);
+  box-shadow: 4px 4px 0 rgba(15, 23, 42, 0.12);
+}
+
+.hc-card-header {
+  background-color: var(--hc-bg-surface);
+  border-bottom: 2px solid var(--hc-border-strong);
+}
+
+.hc-map-container {
+  width: 100%;
+  height: 440px;
+  background-color: #CBD5E1;
+}
+
+.hc-map-legend {
+  background-color: #F8FAFC;
+  border-top: 2px solid var(--hc-border-strong);
+  font-weight: 600;
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #0F172A;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+/* Category Backgrounds (Used in Cards, Badges, and Map Markers) */
+.bg-cat-nature { background-color: var(--cat-nature) !important; color: #FFFFFF !important; }
+.bg-cat-heritage { background-color: var(--cat-heritage) !important; color: #FFFFFF !important; }
+.bg-cat-religious { background-color: var(--cat-religious) !important; color: #FFFFFF !important; }
+.bg-cat-leisure { background-color: var(--cat-leisure) !important; color: #FFFFFF !important; }
+.bg-cat-conservation { background-color: var(--cat-conservation) !important; color: #FFFFFF !important; }
+.bg-cat-hub { background-color: var(--cat-hub) !important; color: #FFFFFF !important; }
+
+/* Custom Leaflet DivIcon Marker Pin */
+.hc-map-pin {
+  width: 34px;
+  height: 34px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 2.5px solid #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hc-map-pin i {
+  transform: rotate(45deg);
+  color: #FFFFFF;
+  font-size: 0.95rem;
+}
+
+/* Leaflet Popup High-Contrast Overrides */
+.leaflet-popup-content-wrapper {
+  border: 2px solid var(--hc-border-strong);
+  border-radius: 10px;
+  box-shadow: 4px 4px 0 rgba(15, 23, 42, 0.25);
+  color: var(--hc-text-primary);
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px;
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
+   Destination Place Cards
+   -------------------------------------------------------------------------- */
+.poi-card {
+  background-color: var(--hc-bg-surface);
+  border: 2px solid var(--hc-border-strong);
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 rgba(15, 23, 42, 0.12);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.poi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 6px 6px 0 var(--hc-border-strong);
+}
+
+/* High-Contrast SVG Thumbnail Placeholder Header */
+.poi-thumbnail-wrapper {
+  position: relative;
+  height: 185px;
+  background-color: #1E293B;
+  border-bottom: 2px solid var(--hc-border-strong);
+  overflow: hidden;
+}
+
+.poi-thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.poi-distance-pill {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #090D16;
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+  font-weight: 800;
+  font-size: 0.82rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+}
+
+.poi-category-badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  border: 2px solid #FFFFFF;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+}
+
+.poi-card-body {
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.poi-meta-box {
+  background-color: #F8FAFC;
+  border: 1.5px solid var(--hc-border-strong);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.86rem;
+  margin-bottom: 0.85rem;
+}
+
+.poi-tip-box {
+  background-color: #FFFBEB;
+  border-left: 4px solid var(--hc-accent-hover);
+  border-top: 1px solid #FDE68A;
+  border-right: 1px solid #FDE68A;
+  border-bottom: 1px solid #FDE68A;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.85rem;
+  color: var(--hc-text-primary);
+  margin-bottom: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   Itinerary Offcanvas Drawer & Stops List
+   -------------------------------------------------------------------------- */
+.hc-offcanvas {
+  border-left: 3px solid var(--hc-border-strong) !important;
+  width: 440px !important;
+  max-width: 100vw;
+}
+
+.hc-offcanvas-header {
+  background-color: #F8FAFC;
+  border-bottom: 2px solid var(--hc-border-strong) !important;
+}
+
+.hc-itinerary-summary {
+  background-color: #FFFBEB;
+  border: 2px solid var(--hc-border-strong);
+}
+
+.itinerary-stop-card {
+  background-color: var(--hc-bg-surface);
+  border: 2px solid var(--hc-border-strong);
+  border-radius: 10px;
+  padding: 0.85rem;
+  margin-bottom: 0.75rem;
+  box-shadow: 2px 2px 0 rgba(15, 23, 42, 0.1);
+}
+
+.stop-index-badge {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: var(--hc-primary);
+  color: #FFFFFF;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.leg-distance-tag {
+  background-color: var(--hc-bg-subtle);
+  color: var(--hc-text-primary);
+  border: 1.5px solid var(--hc-border-strong);
+  font-weight: 700;
+  font-size: 0.76rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   Empty State, Modals & Footer
+   -------------------------------------------------------------------------- */
+.hc-empty-state {
+  background-color: var(--hc-bg-surface);
+  border: 2px dashed var(--hc-border-strong);
+}
+
+.hc-modal {
+  border: 3px solid var(--hc-border-strong);
+  border-radius: 12px;
+}
+
+.hc-alert-info {
+  background-color: #EFF6FF;
+  border: 2px solid var(--hc-primary);
+  color: var(--hc-text-primary);
+}
+
+.hc-footer {
+  background-color: var(--hc-bg-surface);
+  border-top: 2px solid var(--hc-border-strong) !important;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Viewport Adjustments (320px to 1920px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 575.98px) {
+  .hc-map-container {
+    height: 320px;
+  }
+
+  .hc-time-group {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .hc-time-group > .btn {
+    border-radius: 6px !important;
+  }
+
+  .brand-title {
+    font-size: 1.05rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1380px;
+  }
+
+  .hc-map-container {
+    height: 500px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Print Media Queries (Clean Export / Print Itinerary View)
+   -------------------------------------------------------------------------- */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 11pt;
+  }
+
+  /* Hide interactive UI elements when printing */
+  .hc-navbar,
+  .hc-hero,
+  main,
+  .offcanvas,
+  .offcanvas-backdrop,
+  .modal,
+  .hc-footer {
+    display: none !important;
+  }
+
+  /* Show only the dedicated printable itinerary sheet */
+  #printableItinerarySheet {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  #printItineraryTable th,
+  #printItineraryTable td {
+    border: 1.5px solid #000000 !important;
+    padding: 8px 10px !important;
+  }
+}
