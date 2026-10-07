@@ -1,0 +1,5 @@
+Export the schema.sql file into phpMyAdmin to create the database (lavinia_explorer_db).
+Start the php built in web server in the project directory by starting a cmd. Start the server with: php -S localhost:8000
+Start a web browser and enter http://localhost:8000
+
+Enjoy!!!
